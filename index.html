@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghar Ka Swad</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f5f5f5;
+        }
+
+        header {
+            background: #ff5722;
+            color: white;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .hero {
+            background: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 35px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .food {
+            background: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #ddd;
+        }
+
+        .food h2 {
+            margin-top: 0;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        button {
+            background: #ff5722;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🍱 Ghar Ka Swad</h1>
+</header>
+
+<div class="hero">
+    <h1>Ghar Jaisa Swad ❤️</h1>
+    <p>Fresh homemade food, made with love.</p>
+</div>
+
+<div class="container">
+
+    <div class="food">
+        <h2>🍛 Rajma Chawal</h2>
+        <p>Homemade Rajma with fresh rice</p>
+        <p class="price">₹120</p>
+        <button onclick="order('Rajma Chawal')">
+            Order Now
+        </button>
+    </div>
+
+    <div class="food">
+        <h2>🥔 Aloo Paratha</h2>
+        <p>Fresh homemade Aloo Paratha</p>
+        <p class="price">₹60</p>
+        <button onclick="order('Aloo Paratha')">
+            Order Now
+        </button>
+    </div>
+
+    <div class="food">
+        <h2>🍱 Homemade Thali</h2>
+        <p>Dal, Sabzi, Roti and Rice</p>
+        <p class="price">₹150</p>
+        <button onclick="order('Homemade Thali')">
+            Order Now
+        </button>
+    </div>
+
+</div>
+
+<script>
+
+function order(food) {
+    alert(
+        food +
+        " selected! COD ordering system next step mein banayenge."
+    );
+}
+
+</script>
+
+</body>
+</html>
