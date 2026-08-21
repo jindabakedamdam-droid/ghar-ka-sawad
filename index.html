@@ -1,115 +1,194 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghar Ka Swad</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghar Ka Swad</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background: #f5f5f5;
-        }
-
-        header {
-            background: #ff5722;
-            color: white;
-            padding: 18px;
-            text-align: center;
-        }
-
-        .hero {
-            background: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 35px;
-        }
-
-        .container {
-            padding: 20px;
-        }
-
-        .food {
-            background: white;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px #ddd;
-        }
-
-        .food h2 {
-            margin-top: 0;
-        }
-
-        .price {
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        button {
-            background: #ff5722;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-    </style>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f5f5f5;color:#222}
+header{background:#ff5722;color:white;padding:16px;text-align:center;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:24px}
+.hero{text-align:center;background:white;padding:30px 15px}
+.hero h2{font-size:32px;margin:5px}
+.hero p{color:#666}
+.container{padding:20px;max-width:700px;margin:auto}
+.food{background:white;margin-bottom:18px;padding:20px;border-radius:15px;box-shadow:0 3px 12px #ddd}
+.food h2{margin-top:0}
+.price{font-size:22px;font-weight:bold}
+button{border:0;border-radius:8px;padding:12px 18px;font-size:16px;cursor:pointer}
+.order{background:#ff5722;color:white}
+.cart{background:#222;color:white;width:100%;margin-top:10px}
+#cartBox{display:none;background:white;padding:20px;border-radius:15px;margin-top:20px}
+.item{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;padding:12px 0}
+.qty button{padding:5px 10px;background:#eee}
+.form input,.form textarea{width:100%;padding:13px;margin:7px 0;border:1px solid #ccc;border-radius:8px;font-size:16px}
+.cod{background:#168a35;color:white;width:100%;margin-top:10px}
+.total{font-size:20px;font-weight:bold;margin-top:15px}
+footer{text-align:center;background:#222;color:white;padding:20px;margin-top:30px}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>🍱 Ghar Ka Swad</h1>
+<h1>🍱 Ghar Ka Swad</h1>
 </header>
 
-<div class="hero">
-    <h1>Ghar Jaisa Swad ❤️</h1>
-    <p>Fresh homemade food, made with love.</p>
-</div>
+<section class="hero">
+<h2>Ghar Jaisa Swad ❤️</h2>
+<p>Fresh homemade food, made with love.</p>
+</section>
 
 <div class="container">
 
-    <div class="food">
-        <h2>🍛 Rajma Chawal</h2>
-        <p>Homemade Rajma with fresh rice</p>
-        <p class="price">₹120</p>
-        <button onclick="order('Rajma Chawal')">
-            Order Now
-        </button>
-    </div>
+<div class="food">
+<h2>🍛 Rajma Chawal</h2>
+<p>Homemade Rajma with fresh rice</p>
+<p class="price">₹120</p>
+<button class="order" onclick="add('Rajma Chawal',120)">Add to Cart</button>
+</div>
 
-    <div class="food">
-        <h2>🥔 Aloo Paratha</h2>
-        <p>Fresh homemade Aloo Paratha</p>
-        <p class="price">₹60</p>
-        <button onclick="order('Aloo Paratha')">
-            Order Now
-        </button>
-    </div>
+<div class="food">
+<h2>🥔 Aloo Paratha</h2>
+<p>Fresh homemade Aloo Paratha</p>
+<p class="price">₹60</p>
+<button class="order" onclick="add('Aloo Paratha',60)">Add to Cart</button>
+</div>
 
-    <div class="food">
-        <h2>🍱 Homemade Thali</h2>
-        <p>Dal, Sabzi, Roti and Rice</p>
-        <p class="price">₹150</p>
-        <button onclick="order('Homemade Thali')">
-            Order Now
-        </button>
-    </div>
+<div class="food">
+<h2>🍱 Homemade Thali</h2>
+<p>Dal, Sabzi, Roti and Rice</p>
+<p class="price">₹150</p>
+<button class="order" onclick="add('Homemade Thali',150)">Add to Cart</button>
+</div>
+
+<button class="cart" onclick="showCart()">🛒 View Cart (<span id="count">0</span>)</button>
+
+<div id="cartBox">
+<h2>Your Cart</h2>
+<div id="items"></div>
+
+<div class="total">
+Total: ₹<span id="total">0</span>
+</div>
+
+<h2>Delivery Details</h2>
+
+<div class="form">
+<input id="name" placeholder="Your Name">
+<input id="phone" placeholder="Mobile Number" type="tel">
+<textarea id="address" placeholder="Complete Delivery Address" rows="4"></textarea>
+</div>
+
+<button class="cod" onclick="placeOrder()">
+💵 Place COD Order
+</button>
 
 </div>
+</div>
+
+<footer>
+Ghar Ka Swad © 2026
+</footer>
 
 <script>
 
-function order(food) {
-    alert(
-        food +
-        " selected! COD ordering system next step mein banayenge."
-    );
+let cart=[];
+
+function add(name,price){
+let item=cart.find(x=>x.name===name);
+
+if(item){
+item.qty++;
+}else{
+cart.push({name:name,price:price,qty:1});
 }
+
+render();
+alert(name+" cart mein add ho gaya!");
+}
+
+function render(){
+
+document.getElementById("count").innerText=
+cart.reduce((sum,x)=>sum+x.qty,0);
+
+let html="";
+let total=0;
+
+cart.forEach((x,i)=>{
+
+let subtotal=x.price*x.qty;
+total+=subtotal;
+
+html+=`
+<div class="item">
+<div>
+<b>${x.name}</b><br>
+₹${x.price} × ${x.qty}
+</div>
+
+<div class="qty">
+<button onclick="minus(${i})">−</button>
+<button onclick="plus(${i})">+</button>
+</div>
+</div>
+`;
+});
+
+document.getElementById("items").innerHTML=
+html || "Cart empty hai.";
+
+document.getElementById("total").innerText=total;
+}
+
+function plus(i){
+cart[i].qty++;
+render();
+}
+
+function minus(i){
+cart[i].qty--;
+
+if(cart[i].qty<=0){
+cart.splice(i,1);
+}
+
+render();
+}
+
+function showCart(){
+document.getElementById("cartBox").style.display="block";
+}
+
+function placeOrder(){
+
+if(cart.length===0){
+alert("Pehle food cart mein add karo.");
+return;
+}
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let address=document.getElementById("address").value;
+
+if(name==="" || phone==="" || address===""){
+alert("Please Name, Mobile aur Address bharna zaroori hai.");
+return;
+}
+
+alert(
+"Order placed successfully! ✅\n\n"+
+"Name: "+name+
+"\nMobile: "+phone+
+"\n\nCash on Delivery"
+);
+
+}
+
+render();
 
 </script>
 
