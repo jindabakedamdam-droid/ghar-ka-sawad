@@ -104,6 +104,18 @@ Ghar Ka Swad © 2026
 
 let cart=[];
 
+function payUPI(){
+  let amount = 
+document.getElementById("total").innerText;
+
+  if(amount == "0"){
+    alert("Please add an item to cart first.");
+    return;
+  }
+
+  let upi = "upi://pay?pa=nitin5289u@okicici&pn=Ghar%20Ka%20Swad&am=" + amount + "&cu=INR";
+  window.location.href = upi;
+}
 function add(name,price){
 let item=cart.find(x=>x.name===name);
 
